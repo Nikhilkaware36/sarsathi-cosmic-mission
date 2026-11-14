@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Cinematic experience
+- Keep cinematic timing in a pure TypeScript timeline with millisecond boundaries; one monotonic clock controls the intro so rerenders and slow rendering cannot change scene durations.
+- Keep the persistent R3F scene separate from scene typography, and gate Canvas rendering with ClientOnly; this preserves SSR and prevents canvas resets.
+- Use hosted asset pointers for Earth textures and NASA's Landsat model, and retain their license credits; runtime assets must not depend on external source hosts.
