@@ -5,10 +5,10 @@ import CinematicIntro from '@/features/intro/CinematicIntro';
 // project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: 'SARsathi — Dancing with the SARs | Team Drishti' },
-    { name: 'description', content: 'Five minds. One mission. Explore our changing planet with SARsathi and Team Drishti.' },
-    { property: 'og:title', content: 'SARsathi — Dancing with the SARs' },
-    { property: 'og:description', content: 'A cinematic Earth observation mission by Team Drishti.' },
+    { title: "GOD'S EYE — See What the Eye Cannot | Team Drishti" },
+    { name: 'description', content: "Enter GOD'S EYE: a cinematic radar intelligence experience exploring Mumbai's hidden changes with Team Drishti." },
+    { property: 'og:title', content: "GOD'S EYE — See What the Eye Cannot" },
+    { property: 'og:description', content: 'A 30-second scientific awakening and independent NASA Space Apps project by Team Drishti.' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ] }),

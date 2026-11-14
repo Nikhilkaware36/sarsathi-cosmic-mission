@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EarthExplorerRouteImport } from './routes/earth-explorer'
+import { Route as FloodIntelligenceRouteImport } from './routes/flood-intelligence'
+import { Route as NisarMissionRouteImport } from './routes/nisar-mission'
+import { Route as SurfaceIntelligenceRouteImport } from './routes/surface-intelligence'
+import { Route as TeamDrishtiRouteImport } from './routes/team-drishti'
+import { Route as WetlandIntelligenceRouteImport } from './routes/wetland-intelligence'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EarthExplorerRoute = EarthExplorerRouteImport.update({
+  id: '/earth-explorer',
+  path: '/earth-explorer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FloodIntelligenceRoute = FloodIntelligenceRouteImport.update({
+  id: '/flood-intelligence',
+  path: '/flood-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NisarMissionRoute = NisarMissionRouteImport.update({
+  id: '/nisar-mission',
+  path: '/nisar-mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SurfaceIntelligenceRoute = SurfaceIntelligenceRouteImport.update({
+  id: '/surface-intelligence',
+  path: '/surface-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamDrishtiRoute = TeamDrishtiRouteImport.update({
+  id: '/team-drishti',
+  path: '/team-drishti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WetlandIntelligenceRoute = WetlandIntelligenceRouteImport.update({
+  id: '/wetland-intelligence',
+  path: '/wetland-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/earth-explorer': typeof EarthExplorerRoute
+  '/flood-intelligence': typeof FloodIntelligenceRoute
+  '/nisar-mission': typeof NisarMissionRoute
+  '/surface-intelligence': typeof SurfaceIntelligenceRoute
+  '/team-drishti': typeof TeamDrishtiRoute
+  '/wetland-intelligence': typeof WetlandIntelligenceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/earth-explorer': typeof EarthExplorerRoute
+  '/flood-intelligence': typeof FloodIntelligenceRoute
+  '/nisar-mission': typeof NisarMissionRoute
+  '/surface-intelligence': typeof SurfaceIntelligenceRoute
+  '/team-drishti': typeof TeamDrishtiRoute
+  '/wetland-intelligence': typeof WetlandIntelligenceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/earth-explorer': typeof EarthExplorerRoute
+  '/flood-intelligence': typeof FloodIntelligenceRoute
+  '/nisar-mission': typeof NisarMissionRoute
+  '/surface-intelligence': typeof SurfaceIntelligenceRoute
+  '/team-drishti': typeof TeamDrishtiRoute
+  '/wetland-intelligence': typeof WetlandIntelligenceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/earth-explorer'
+    | '/flood-intelligence'
+    | '/nisar-mission'
+    | '/surface-intelligence'
+    | '/team-drishti'
+    | '/wetland-intelligence'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/earth-explorer'
+    | '/flood-intelligence'
+    | '/nisar-mission'
+    | '/surface-intelligence'
+    | '/team-drishti'
+    | '/wetland-intelligence'
+  id:
+    | '__root__'
+    | '/'
+    | '/earth-explorer'
+    | '/flood-intelligence'
+    | '/nisar-mission'
+    | '/surface-intelligence'
+    | '/team-drishti'
+    | '/wetland-intelligence'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EarthExplorerRoute: typeof EarthExplorerRoute
+  FloodIntelligenceRoute: typeof FloodIntelligenceRoute
+  NisarMissionRoute: typeof NisarMissionRoute
+  SurfaceIntelligenceRoute: typeof SurfaceIntelligenceRoute
+  TeamDrishtiRoute: typeof TeamDrishtiRoute
+  WetlandIntelligenceRoute: typeof WetlandIntelligenceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/earth-explorer': {
+      id: '/earth-explorer'
+      path: '/earth-explorer'
+      fullPath: '/earth-explorer'
+      preLoaderRoute: typeof EarthExplorerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flood-intelligence': {
+      id: '/flood-intelligence'
+      path: '/flood-intelligence'
+      fullPath: '/flood-intelligence'
+      preLoaderRoute: typeof FloodIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nisar-mission': {
+      id: '/nisar-mission'
+      path: '/nisar-mission'
+      fullPath: '/nisar-mission'
+      preLoaderRoute: typeof NisarMissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/surface-intelligence': {
+      id: '/surface-intelligence'
+      path: '/surface-intelligence'
+      fullPath: '/surface-intelligence'
+      preLoaderRoute: typeof SurfaceIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team-drishti': {
+      id: '/team-drishti'
+      path: '/team-drishti'
+      fullPath: '/team-drishti'
+      preLoaderRoute: typeof TeamDrishtiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wetland-intelligence': {
+      id: '/wetland-intelligence'
+      path: '/wetland-intelligence'
+      fullPath: '/wetland-intelligence'
+      preLoaderRoute: typeof WetlandIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EarthExplorerRoute: EarthExplorerRoute,
+  FloodIntelligenceRoute: FloodIntelligenceRoute,
+  NisarMissionRoute: NisarMissionRoute,
+  SurfaceIntelligenceRoute: SurfaceIntelligenceRoute,
+  TeamDrishtiRoute: TeamDrishtiRoute,
+  WetlandIntelligenceRoute: WetlandIntelligenceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

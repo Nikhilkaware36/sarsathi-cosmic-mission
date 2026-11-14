@@ -1,0 +1,30 @@
+import { lazy, Suspense, useState } from 'react';
+import { ClientOnly, Link } from '@tanstack/react-router';
+import { Eye, Globe2, Waves, Leaf, Mountain, Satellite, Users, RotateCcw, Crosshair, Orbit } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import ScienceMap, { type ScienceKind } from './ScienceMap';
+import { CREW } from './timeline';
+const SpaceScene = lazy(() => import('./SpaceScene'));
+const navigation = [
+  { to: '/earth-explorer', label: 'Earth Explorer', icon: Globe2 },
+  { to: '/flood-intelligence', label: 'Flood Intelligence', icon: Waves },
+  { to: '/wetland-intelligence', label: 'Wetland Intelligence', icon: Leaf },
+  { to: '/surface-intelligence', label: 'Surface Intelligence', icon: Mountain },
+  { to: '/nisar-mission', label: 'NISAR Mission', icon: Satellite },
+  { to: '/team-drishti', label: 'Team Drishti', icon: Users },
+] as const;
+export type MissionView = 'earth' | ScienceKind | 'nisar' | 'team';
+export default function MissionDashboard({ view }: { view: MissionView }) {
+  const [grid, setGrid] = useState(true);
+  const [orbit, setOrbit] = useState(true);
+  const science = view === 'flood' || view === 'wetland' || view === 'surface';
+  const title = view === 'earth' ? 'EARTH EXPLORER' : view === 'nisar' ? 'NISAR MISSION' : view === 'team' ? 'TEAM DRISHTI' : `${view.toUpperCase()} INTELLIGENCE`;
+  return <main className="mission-app">
+    <header className="mission-header"><Link to="/" className="wordmark"><Eye strokeWidth={1.3} /><span>GOD'S EYE<i /></span></Link><span className="mission-tagline">SEE WHAT THE EYE CANNOT.</span><Button asChild variant="cinematic" size="sm"><Link to="/"><RotateCcw /> REPLAY INTRO</Link></Button></header>
+    <div className="mission-layout"><nav className="mission-nav" aria-label="Mission navigation"><span className="nav-label">MISSION CONTROL</span>{navigation.map(n => <Link to={n.to} key={n.to} activeProps={{ className: 'active' }}><n.icon size={17} />{n.label}</Link>)}<div className="nav-foot"><span className="status-dot" /> DEMONSTRATION MODE<br /><small>NO LIVE DATA CONNECTED</small></div></nav>
+    <section className="mission-content"><div className="view-heading"><div><div className="eyebrow">GOD'S EYE / {science ? 'MUMBAI, INDIA' : 'PLANETARY OBSERVATION'}</div><h1>{title}<span className="title-period">.</span></h1></div><span className="simulated">{science ? 'SIMULATED DEMONSTRATION' : 'INDEPENDENT SPACE APPS PROJECT'}</span></div>
+      {view === 'earth' ? <><div className="explorer-stage"><ClientOnly fallback={<div className="earth-fallback" />}><Suspense fallback={<div className="earth-fallback" />}><SpaceScene mode={1} reduced={false} onReady={() => {}} interactive grid={grid} orbitVisible={orbit} /></Suspense></ClientOnly><div className="explorer-label"><span>EARTH / REFERENCE VISUALIZATION</span><strong>One Planet.<br />Infinite Signals.</strong></div><div className="explorer-tools"><Button variant="cinematic" size="icon" title="Geographic grid" aria-label="Toggle geographic grid" aria-pressed={grid} onClick={() => setGrid(!grid)}><Crosshair /></Button><Button variant="cinematic" size="icon" title="Satellite orbit" aria-label="Toggle satellite orbit" aria-pressed={orbit} onClick={() => setOrbit(!orbit)}><Orbit /></Button></div></div><div className="science-summary"><div><span>STUDY AREA</span><strong>Mumbai, India</strong></div><div><span>SCIENTIFIC FOUNDATION</span><strong>NASA–ISRO NISAR</strong></div><div><span>CHALLENGE</span><strong>Dancing with the SARs</strong></div></div></> : science ? <><ScienceMap kind={view} /><div className="analysis-notes"><h2>{view === 'flood' ? 'Water beyond the visible.' : view === 'wetland' ? 'A coastline in transition.' : 'Change across time.'}</h2><p>{view === 'flood' ? 'Radar backscatter can help distinguish inundated areas. This conceptual mask illustrates a flood-monitoring workflow, not a detected flood.' : view === 'wetland' ? 'Repeated observations can support coastal wetland monitoring. This generated comparison represents two fictional scenarios, not measured land-cover change.' : 'Interferometric phase differences can inform surface-change analysis. These illustrative fringes are not measured ground displacement.'}</p><p className="integrity-note">Generated landscape, fictional observation dates, illustrative overlays. No scientific measurements or conclusions are provided.</p></div></> : view === 'nisar' ? <div className="mission-article"><Satellite size={48} /><h2>Two radars.<br />One changing planet.</h2><p>NISAR is a joint NASA–ISRO Earth observation mission using L-band and S-band synthetic aperture radar to study changes in Earth's land and ice surfaces.</p><p>GOD'S EYE explores radar-informed flood monitoring, wetland change and surface analysis around Mumbai. The current experience contains simulated demonstrations, not live NISAR observations.</p><div className="science-summary"><div><span>L-BAND</span><strong>~24 cm wavelength</strong></div><div><span>S-BAND</span><strong>~10 cm wavelength</strong></div></div><Button asChild variant="mission"><a href="https://nisar.jpl.nasa.gov/" target="_blank" rel="noreferrer">NASA NISAR mission <Satellite /></a></Button><Button asChild variant="cinematic"><a href="https://www.isro.gov.in/NISAR.html" target="_blank" rel="noreferrer">ISRO mission resources</a></Button><p className="integrity-note">An independent NASA Space Apps Challenge project. Not an official NASA or ISRO product. Satellite reference model: NASA Landsat 8; cinematic antenna is NISAR-inspired.</p></div> : <div className="team-view"><div className="eyebrow">FIVE MINDS. ONE MISSION.</div><h2>United by curiosity.</h2><div className="crew-list">{CREW.map((m, i) => <div key={m.id}><span>0{i + 1}</span><h3>{m.name}</h3><span>TEAM DRISHTI</span></div>)}</div><p>Dancing with the SARs — NASA Space Apps Challenge.</p></div>}
+      <footer className="dashboard-footer"><span>GOD'S EYE / TEAM DRISHTI</span><span>SEE WHAT THE EYE CANNOT.</span></footer>
+    </section></div>
+  </main>;
+}
