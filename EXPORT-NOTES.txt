@@ -1,0 +1,28 @@
+GOD'S EYE source export
+
+Includes the tracked project source and configuration, tests, package.json,
+bun.lock, README, license credits, and all locally available binary assets:
+  public/favicon.ico
+  src/assets/mumbai-simulation.jpg
+
+These four Lovable-managed manifests are included, but their actual binary
+payloads are not present in the workspace and are NOT included in this ZIP:
+  src/assets/earth-clouds.asset.json       (earth-clouds.png)
+  src/assets/earth-night.asset.json        (earth-night.png)
+  src/assets/earth-surface.asset.json      (earth-surface.jpg)
+  src/assets/models/landsat-8.glb.asset.json (landsat-8.glb)
+
+Their /__l5e/assets-v1/ URLs depend on Lovable's asset-serving infrastructure;
+an ordinary local Vite server does not provide those URLs. Earth textures and
+the satellite model therefore require separately obtaining the hosted payloads
+and configuring local serving before those visuals can work independently.
+No payloads or placeholders have been invented, and app code is unchanged.
+Retain the NASA asset credits in src/assets/CREDITS.md.
+
+Excluded: repository metadata at every depth, node_modules, build output,
+caches, secrets, environment credentials, and the ZIP itself (no recursion).
+No package-lock.json exists in the workspace; the existing bun.lock is included.
+
+Local setup: npm install, then npm run dev; alternatively bun install, then
+bun run dev. See README.md. Package installation and a fully independent local
+asset setup have not been verified by this export.

@@ -10,11 +10,13 @@ This project was built with [Lovable](https://lovable.dev).
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Extract the source ZIP, open a terminal in the extracted project folder, and use a current Node.js LTS release (22.12+ or 24+) with npm, or Bun.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+Alternatively, run `bun install` followed by `bun run dev`. Open the local address printed by the dev server.
+
+The archive includes the tracked source, configuration, tests, Bun lockfile, and all binary assets present in the workspace. See `EXPORT-NOTES.txt` for the four Lovable-managed asset payloads that are not included locally; their manifests remain unchanged. The source ZIP is served at `/gods-eye-source.zip`.
